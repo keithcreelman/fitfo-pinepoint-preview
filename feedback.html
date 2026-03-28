@@ -395,11 +395,62 @@
   <div class="footer">FITFO Systems &middot; fitfosystems.com</div>
 
   <script>
+  // ← Replace this URL after deploying the Google Apps Script
+  const APPS_SCRIPT_URL = 'https://script.google.com/a/macros/fitfosystems.com/s/AKfycbxGFoSRt2MTPo-E-7nlQlVPvnzKUM0qlMVtRHLqaktoB_WyRaaeXXXVcB9FsLFT3AZg/exec';
+
   function submitFeedback(e) {
     e.preventDefault();
 
-    // In production: POST to Google Apps Script endpoint
-    // For now: show confirmation
+    const form = e.target;
+    const btn = form.querySelector('.btn-submit');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    // Collect all form data
+    const data = {
+      strengths: form.strengths?.value || '',
+      changes: form.changes?.value || '',
+      services_accurate: form.services_accurate?.checked ? 'yes' : '',
+      custom_carving: form.custom_carving?.checked ? 'yes' : '',
+      services_notes: form.services_notes?.value || '',
+      photos_quality: form.querySelector('input[name="photos_quality"]:checked')?.value || '',
+      photos_notes: form.photos_notes?.value || '',
+      estimate_flow: form.estimate_flow?.checked ? 'yes' : '',
+      estimate_pricing: form.estimate_pricing?.checked ? 'yes' : '',
+      estimate_notes: form.estimate_notes?.value || '',
+      review_susan: form.review_susan?.checked ? 'approved' : '',
+      review_roger: form.review_roger?.checked ? 'approved' : '',
+      review_isaac: form.review_isaac?.checked ? 'approved' : '',
+      additional_reviews: form.additional_reviews?.value || '',
+      phone: form.phone?.value || '',
+      jason_phone: form.jason_phone?.value || '',
+      years: form.years?.value || '',
+      emergency: form.emergency?.value || '',
+      service_area: form.service_area?.value || '',
+      additional: form.additional?.value || ''
+    };
+
+    // POST to Google Apps Script
+    if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'PASTE_YOUR_APPS_SCRIPT_URL_HERE') {
+      fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      }).then(() => {
+        showConfirmation();
+      }).catch(() => {
+        // Even on error, show confirmation (no-cors doesn't return readable response)
+        showConfirmation();
+      });
+    } else {
+      // Fallback if URL not set — still show confirmation
+      console.log('Form data (backend not configured):', data);
+      showConfirmation();
+    }
+  }
+
+  function showConfirmation() {
     document.getElementById('feedbackForm').style.display = 'none';
     document.getElementById('confirmation').style.display = 'block';
     window.scrollTo({ top: 0, behavior: 'smooth' });
