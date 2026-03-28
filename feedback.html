@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pine Point Tree Service — Site Feedback</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #F7F8FA;
+      --white: #FFFFFF;
+      --black: #1A1A2E;
+      --dark: #2D3142;
+      --gray: #6B7280;
+      --light-gray: #9CA3AF;
+      --border: #E5E7EB;
+      --green: #2D5A27;
+      --green-light: #E8F5E3;
+      --navy: #0D1B2A;
+      --blue: #00B4D8;
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--dark);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    .header {
+      background: var(--navy);
+      padding: 32px 24px;
+      text-align: center;
+    }
+    .header__title {
+      color: var(--white);
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .header__sub {
+      color: var(--light-gray);
+      font-size: 0.875rem;
+    }
+
+    /* Container */
+    .container {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 32px 20px 64px;
+    }
+
+    .intro {
+      margin-bottom: 32px;
+    }
+    .intro p {
+      color: var(--gray);
+      font-size: 0.95rem;
+      margin-bottom: 8px;
+    }
+
+    /* Sections */
+    .section {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+    .section__title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+    }
+
+    /* Form elements */
+    label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--dark);
+      margin-bottom: 6px;
+    }
+    .label-note {
+      font-weight: 400;
+      color: var(--gray);
+    }
+
+    input[type="text"],
+    input[type="tel"],
+    input[type="email"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-family: var(--font);
+      font-size: 0.9rem;
+      color: var(--dark);
+      background: var(--white);
+      margin-bottom: 16px;
+      transition: border-color 0.2s;
+    }
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: var(--green);
+    }
+    textarea { resize: vertical; min-height: 80px; }
+
+    /* Radio/Checkbox groups */
+    .option-group {
+      margin-bottom: 16px;
+    }
+    .option-group label {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-weight: 400;
+      cursor: pointer;
+      padding: 6px 0;
+    }
+    .option-group input[type="radio"],
+    .option-group input[type="checkbox"] {
+      margin-top: 3px;
+      width: auto;
+      accent-color: var(--green);
+    }
+
+    /* Confirm items */
+    .confirm-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .confirm-item:last-child { border-bottom: none; }
+    .confirm-item input[type="checkbox"] {
+      margin-top: 4px;
+      width: auto;
+      accent-color: var(--green);
+    }
+    .confirm-item__text {
+      font-size: 0.9rem;
+      color: var(--dark);
+    }
+    .confirm-item__quote {
+      font-size: 0.85rem;
+      color: var(--gray);
+      font-style: italic;
+      margin-top: 2px;
+    }
+
+    /* Row */
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 500px) {
+      .row { grid-template-columns: 1fr; }
+    }
+
+    /* Submit */
+    .submit-section {
+      text-align: center;
+      padding: 24px 0;
+    }
+    .btn-submit {
+      background: var(--green);
+      color: var(--white);
+      border: none;
+      padding: 14px 48px;
+      font-family: var(--font);
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-submit:hover { background: #3A7432; }
+
+    /* Confirmation */
+    .confirmation {
+      display: none;
+      text-align: center;
+      padding: 48px 24px;
+    }
+    .confirmation__icon {
+      width: 56px;
+      height: 56px;
+      background: var(--green-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      font-size: 1.5rem;
+    }
+    .confirmation h2 {
+      font-size: 1.25rem;
+      color: var(--black);
+      margin-bottom: 8px;
+    }
+    .confirmation p {
+      color: var(--gray);
+      font-size: 0.95rem;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 24px;
+      font-size: 0.8rem;
+      color: var(--light-gray);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1 class="header__title">Pine Point Tree Service</h1>
+    <p class="header__sub">Website Review — FITFO Systems</p>
+  </div>
+
+  <div class="container">
+
+    <!-- Form -->
+    <div id="feedbackForm">
+
+      <div class="intro">
+        <p>We want to make sure the site represents Pine Point the right way before it goes live. This form covers the key areas — takes about 5 minutes.</p>
+        <p>Answer what you can. Skip what you're not sure about and we'll talk through it.</p>
+      </div>
+
+      <form onsubmit="submitFeedback(event)">
+
+        <!-- Overall -->
+        <div class="section">
+          <h2 class="section__title">Overall Impression</h2>
+
+          <label>When you look at the site, what feels like it represents Pine Point well?</label>
+          <textarea name="strengths" placeholder="Sections that feel right, messaging that sounds like you, visuals that work..."></textarea>
+
+          <label>What feels off, unclear, or missing?</label>
+          <textarea name="changes" placeholder="Anything that doesn't match how you'd describe the business, looks wrong, or should be different..."></textarea>
+        </div>
+
+        <!-- Services -->
+        <div class="section">
+          <h2 class="section__title">Services</h2>
+
+          <div class="option-group">
+            <label><input type="checkbox" name="services_accurate" value="yes"> All four services are accurate (removal, trimming, stump grinding, lot clearing)</label>
+            <label><input type="checkbox" name="custom_carving" value="yes"> Keep custom stump carving as a featured service</label>
+          </div>
+
+          <label>Anything to add, remove, or reword? <span class="label-note">(optional)</span></label>
+          <textarea name="services_notes" rows="3" placeholder="Any service we missed, any description that doesn't sound right..."></textarea>
+        </div>
+
+        <!-- Photos -->
+        <div class="section">
+          <h2 class="section__title">Photos &amp; Work Examples</h2>
+
+          <div class="option-group">
+            <label><input type="radio" name="photos_quality" value="good"> Current photos represent our work well enough for now</label>
+            <label><input type="radio" name="photos_quality" value="have_better"> I have better photos to send over</label>
+            <label><input type="radio" name="photos_quality" value="need_discuss"> Let's discuss — not sure what works best</label>
+          </div>
+
+          <label>Notes <span class="label-note">(optional)</span></label>
+          <textarea name="photos_notes" rows="2" placeholder="Any specific jobs you'd want shown, or photos you know would look better..."></textarea>
+        </div>
+
+        <!-- Estimate Tool -->
+        <div class="section">
+          <h2 class="section__title">Estimate Tool</h2>
+
+          <div class="option-group">
+            <label><input type="checkbox" name="estimate_flow" value="yes"> The question flow makes sense</label>
+            <label><input type="checkbox" name="estimate_pricing" value="yes"> Price ranges feel realistic</label>
+          </div>
+
+          <label>Any concerns or ideas? <span class="label-note">(optional)</span></label>
+          <textarea name="estimate_notes" rows="2" placeholder="Questions that felt wrong, prices that seemed off, anything confusing..."></textarea>
+        </div>
+
+        <!-- Reviews -->
+        <div class="section">
+          <h2 class="section__title">Review Confirmation</h2>
+          <p style="color: var(--gray); font-size: 0.85rem; margin-bottom: 16px;">These reviews will appear on your live site. Check each one to confirm the quote is accurate and you're okay with it being published.</p>
+
+          <div class="confirm-item">
+            <input type="checkbox" name="review_susan" value="approved">
+            <div>
+              <div class="confirm-item__text"><strong>Susan B.</strong> (Facebook)</div>
+              <div class="confirm-item__quote">"Pine Point did an excellent job grooming our big oaks and trimming back the brush..."</div>
+            </div>
+          </div>
+
+          <div class="confirm-item">
+            <input type="checkbox" name="review_roger" value="approved">
+            <div>
+              <div class="confirm-item__text"><strong>Roger R.</strong> (Facebook)</div>
+              <div class="confirm-item__quote">"Had Pine Point Tree Service take down a HUGE maple tree in the yard near a deck, pool, and fence..."</div>
+            </div>
+          </div>
+
+          <div class="confirm-item">
+            <input type="checkbox" name="review_isaac" value="approved">
+            <div>
+              <div class="confirm-item__text"><strong>Isaac H.</strong> (BBB)</div>
+              <div class="confirm-item__quote">"Did a great job taking down three large trees in my yard. Very careful with my other plants..."</div>
+            </div>
+          </div>
+
+          <label style="margin-top: 16px;">Additional reviews to include? <span class="label-note">(optional)</span></label>
+          <textarea name="additional_reviews" rows="2" placeholder="Paste review text or tell us where to find them"></textarea>
+        </div>
+
+        <!-- Contact / Business Details -->
+        <div class="section">
+          <h2 class="section__title">Contact &amp; Business Details</h2>
+
+          <div class="row">
+            <div>
+              <label>Phone <span class="label-note">(confirm or update)</span></label>
+              <input type="tel" name="phone" value="(774) 262-2145">
+            </div>
+            <div>
+              <label>Add Jason's number? <span class="label-note">(optional)</span></label>
+              <input type="tel" name="jason_phone" placeholder="Leave blank if no">
+            </div>
+          </div>
+
+          <div class="row">
+            <div>
+              <label>Years in business</label>
+              <input type="text" name="years" placeholder="e.g., 5 years">
+            </div>
+            <div>
+              <label>Emergency storm calls?</label>
+              <select name="emergency">
+                <option value="">Select...</option>
+                <option value="yes">Yes — we handle storm calls</option>
+                <option value="no">No — not at this time</option>
+                <option value="discuss">Let's discuss</option>
+              </select>
+            </div>
+          </div>
+
+          <label>Service area — any towns to add or remove? <span class="label-note">(optional)</span></label>
+          <textarea name="service_area" rows="2" placeholder="Currently: Leicester, Spencer, Paxton, Auburn, Charlton, Oxford, Worcester, Rutland, Holden, Sterling"></textarea>
+        </div>
+
+        <!-- Additional -->
+        <div class="section">
+          <h2 class="section__title">Anything Else</h2>
+          <label>Other feedback, ideas, or requests</label>
+          <textarea name="additional" rows="4" placeholder="Anything we haven't covered..."></textarea>
+        </div>
+
+        <div class="submit-section">
+          <button type="submit" class="btn-submit">Send Feedback</button>
+        </div>
+
+      </form>
+    </div>
+
+    <!-- Confirmation -->
+    <div class="confirmation" id="confirmation">
+      <div class="confirmation__icon">&#10003;</div>
+      <h2>Thanks — we've got it.</h2>
+      <p>We'll review your feedback and follow up shortly. If it's easier, we can also go over everything in person or on a call.</p>
+    </div>
+
+  </div>
+
+  <div class="footer">FITFO Systems &middot; fitfosystems.com</div>
+
+  <script>
+  function submitFeedback(e) {
+    e.preventDefault();
+
+    // In production: POST to Google Apps Script endpoint
+    // For now: show confirmation
+    document.getElementById('feedbackForm').style.display = 'none';
+    document.getElementById('confirmation').style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  </script>
+</body>
+</html>
