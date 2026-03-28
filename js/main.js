@@ -142,27 +142,29 @@ function initSlider(slider) {
     }
   });
 
-  // Arrow buttons (injected into each slider)
-  const arrowLeft = document.createElement('button');
-  arrowLeft.className = 'ba-arrow ba-arrow--left';
-  arrowLeft.innerHTML = '&#9664;';
-  arrowLeft.setAttribute('aria-label', 'Show before');
-  arrowLeft.addEventListener('click', function(e) {
-    e.stopPropagation();
-    setPosition(Math.max(5, currentPercent - 25));
-  });
+  // Arrow buttons — mobile only (desktop uses drag/click, arrows add clutter)
+  if (window.innerWidth <= 768) {
+    const arrowLeft = document.createElement('button');
+    arrowLeft.className = 'ba-arrow ba-arrow--left';
+    arrowLeft.innerHTML = '&#9664;';
+    arrowLeft.setAttribute('aria-label', 'Show before');
+    arrowLeft.addEventListener('click', function(e) {
+      e.stopPropagation();
+      setPosition(Math.max(5, currentPercent - 25));
+    });
 
-  const arrowRight = document.createElement('button');
-  arrowRight.className = 'ba-arrow ba-arrow--right';
-  arrowRight.innerHTML = '&#9654;';
-  arrowRight.setAttribute('aria-label', 'Show after');
-  arrowRight.addEventListener('click', function(e) {
-    e.stopPropagation();
-    setPosition(Math.min(95, currentPercent + 25));
-  });
+    const arrowRight = document.createElement('button');
+    arrowRight.className = 'ba-arrow ba-arrow--right';
+    arrowRight.innerHTML = '&#9654;';
+    arrowRight.setAttribute('aria-label', 'Show after');
+    arrowRight.addEventListener('click', function(e) {
+      e.stopPropagation();
+      setPosition(Math.min(95, currentPercent + 25));
+    });
 
-  slider.appendChild(arrowLeft);
-  slider.appendChild(arrowRight);
+    slider.appendChild(arrowLeft);
+    slider.appendChild(arrowRight);
+  }
 }
 
 /* --- Timeline Arrow Navigation --- */

@@ -653,6 +653,7 @@ h3 { font-size: var(--font-size-xl); }
   width: 100%;
   height: 500px;
   object-fit: cover;
+  object-position: center 30%; /* Fairy house: focus on the main carving, not the sky */
 }
 
 .spotlight__content h2 {
@@ -1302,7 +1303,7 @@ body.emergency-active .hero {
   /* --- About: TEXT FIRST on mobile (critical UX fix) --- */
   .about__image { order: 1; }  /* push image BELOW text on mobile */
   .about__content { order: 0; } /* text comes first */
-  .about__image img { height: 220px; object-position: center 25%; } /* Show boom arm + worker in shorter mobile frame */
+  .about__image img { height: 260px; object-position: center 20%; } /* Show boom arm + truck in shorter mobile frame */
   .about__points { gap: 8px; }
   .about__point { padding: 12px 0; }
 
@@ -1328,7 +1329,7 @@ body.emergency-active .hero {
   .timeline-item img { height: 170px; }
 
   /* --- Stump spotlight: compact --- */
-  .spotlight__image img { height: 240px; }
+  .spotlight__image img { height: 320px; object-position: center 25%; }
   .spotlight--featured { gap: 20px; }
 
   /* --- Reviews: tighter cards --- */
