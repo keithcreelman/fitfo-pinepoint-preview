@@ -3,99 +3,133 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pine Point Tree Service — Site Feedback</title>
+  <title>Client Review — Pine Point Tree Service | FITFO Systems</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #F7F8FA;
-      --white: #FFFFFF;
-      --black: #1A1A2E;
-      --dark: #2D3142;
-      --gray: #6B7280;
-      --light-gray: #9CA3AF;
-      --border: #E5E7EB;
+      --bg: #0D1117;
+      --surface: #161B22;
+      --surface-hover: #1C2128;
+      --border: #30363D;
+      --border-light: #21262D;
+      --text-primary: #E6EDF3;
+      --text-secondary: #8B949E;
+      --text-muted: #6E7681;
       --green: #2D5A27;
-      --green-light: #E8F5E3;
-      --navy: #0D1B2A;
+      --green-bright: #3FB950;
       --blue: #00B4D8;
+      --amber: #F4A261;
       --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
 
     html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+    body { font-family: var(--font); background: var(--bg); color: var(--text-primary); line-height: 1.6; min-height: 100vh; }
 
-    body {
-      font-family: var(--font);
-      background: var(--bg);
-      color: var(--dark);
-      line-height: 1.6;
-      min-height: 100vh;
-    }
-
-    /* Header */
+    /* === HEADER === */
     .header {
-      background: var(--navy);
-      padding: 32px 24px;
-      text-align: center;
+      border-bottom: 1px solid var(--border);
+      padding: 24px 24px 20px;
+    }
+    .header__inner {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .header__brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .header__fitfo {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      color: var(--blue);
+    }
+    .header__divider {
+      width: 1px;
+      height: 14px;
+      background: var(--border);
+    }
+    .header__project {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
     }
     .header__title {
-      color: var(--white);
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 4px;
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.5px;
+      margin-bottom: 6px;
     }
-    .header__sub {
-      color: var(--light-gray);
-      font-size: 0.875rem;
+    .header__subtitle {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      max-width: 480px;
     }
 
-    /* Container */
+    /* === CONTAINER === */
     .container {
       max-width: 640px;
       margin: 0 auto;
-      padding: 32px 20px 64px;
+      padding: 32px 20px 80px;
     }
 
     .intro {
-      margin-bottom: 32px;
+      padding: 20px 0 28px;
+      border-bottom: 1px solid var(--border-light);
+      margin-bottom: 28px;
     }
     .intro p {
-      color: var(--gray);
-      font-size: 0.95rem;
-      margin-bottom: 8px;
-    }
-
-    /* Sections */
-    .section {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 24px;
-      margin-bottom: 20px;
-    }
-    .section__title {
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--black);
-      margin-bottom: 16px;
-      padding-bottom: 8px;
-      border-bottom: 2px solid var(--border);
-    }
-
-    /* Form elements */
-    label {
-      display: block;
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: var(--dark);
+      color: var(--text-secondary);
+      font-size: 0.9rem;
       margin-bottom: 6px;
     }
-    .label-note {
+
+    /* === SECTIONS === */
+    .section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 24px;
+      margin-bottom: 16px;
+    }
+    .section__title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .section__note {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      line-height: 1.5;
+    }
+
+    /* === FORM ELEMENTS === */
+    label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+    }
+    .label-hint {
       font-weight: 400;
-      color: var(--gray);
+      color: var(--text-muted);
     }
 
     input[type="text"],
@@ -105,147 +139,170 @@
     select {
       width: 100%;
       padding: 10px 12px;
+      background: var(--bg);
       border: 1px solid var(--border);
-      border-radius: 6px;
+      border-radius: 4px;
       font-family: var(--font);
-      font-size: 0.9rem;
-      color: var(--dark);
-      background: var(--white);
-      margin-bottom: 16px;
+      font-size: 0.875rem;
+      color: var(--text-primary);
+      margin-bottom: 14px;
       transition: border-color 0.2s;
     }
     input:focus, textarea:focus, select:focus {
       outline: none;
-      border-color: var(--green);
+      border-color: var(--blue);
     }
-    textarea { resize: vertical; min-height: 80px; }
+    input::placeholder, textarea::placeholder { color: var(--text-muted); }
+    textarea { resize: vertical; min-height: 72px; }
+    select { cursor: pointer; }
 
-    /* Radio/Checkbox groups */
-    .option-group {
-      margin-bottom: 16px;
+    input[type="file"] {
+      width: 100%;
+      padding: 10px 12px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--text-muted);
+      font-family: var(--font);
+      font-size: 0.85rem;
+      margin-bottom: 4px;
     }
+
+    /* Checkbox / Radio */
+    .option-group { margin-bottom: 14px; }
     .option-group label {
       display: flex;
       align-items: flex-start;
       gap: 8px;
       font-weight: 400;
+      font-size: 0.875rem;
+      color: var(--text-primary);
       cursor: pointer;
-      padding: 6px 0;
+      padding: 5px 0;
     }
     .option-group input[type="radio"],
     .option-group input[type="checkbox"] {
       margin-top: 3px;
       width: auto;
-      accent-color: var(--green);
+      accent-color: var(--green-bright);
     }
 
-    /* Confirm items */
+    /* Review confirmation items */
     .confirm-item {
       display: flex;
       align-items: flex-start;
       gap: 10px;
-      padding: 10px 0;
-      border-bottom: 1px solid var(--border);
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border-light);
     }
-    .confirm-item:last-child { border-bottom: none; }
+    .confirm-item:last-of-type { border-bottom: none; }
     .confirm-item input[type="checkbox"] {
       margin-top: 4px;
       width: auto;
-      accent-color: var(--green);
+      accent-color: var(--green-bright);
     }
     .confirm-item__text {
-      font-size: 0.9rem;
-      color: var(--dark);
+      font-size: 0.875rem;
+      color: var(--text-primary);
     }
     .confirm-item__quote {
-      font-size: 0.85rem;
-      color: var(--gray);
+      font-size: 0.8rem;
+      color: var(--text-muted);
       font-style: italic;
-      margin-top: 2px;
+      margin-top: 3px;
+      line-height: 1.5;
     }
 
-    /* Row */
-    .row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-    @media (max-width: 500px) {
-      .row { grid-template-columns: 1fr; }
-    }
+    /* Row layout */
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 500px) { .row { grid-template-columns: 1fr; } }
 
     /* Submit */
-    .submit-section {
-      text-align: center;
-      padding: 24px 0;
+    .submit-area {
+      padding: 24px 0 0;
     }
     .btn-submit {
+      width: 100%;
       background: var(--green);
-      color: var(--white);
+      color: #fff;
       border: none;
-      padding: 14px 48px;
+      padding: 14px 32px;
       font-family: var(--font);
-      font-size: 1rem;
-      font-weight: 600;
-      border-radius: 6px;
+      font-size: 0.925rem;
+      font-weight: 700;
+      border-radius: 4px;
       cursor: pointer;
       transition: background 0.2s;
+      letter-spacing: 0.3px;
     }
     .btn-submit:hover { background: #3A7432; }
+    .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
 
     /* Confirmation */
     .confirmation {
       display: none;
       text-align: center;
-      padding: 48px 24px;
+      padding: 64px 24px;
     }
-    .confirmation__icon {
-      width: 56px;
-      height: 56px;
-      background: var(--green-light);
+    .confirmation__check {
+      width: 48px;
+      height: 48px;
+      border: 2px solid var(--green-bright);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 16px;
-      font-size: 1.5rem;
+      margin: 0 auto 20px;
+      color: var(--green-bright);
+      font-size: 1.25rem;
     }
     .confirmation h2 {
       font-size: 1.25rem;
-      color: var(--black);
-      margin-bottom: 8px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 10px;
     }
     .confirmation p {
-      color: var(--gray);
-      font-size: 0.95rem;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
       max-width: 400px;
       margin: 0 auto;
+      line-height: 1.6;
     }
+    .confirmation p + p { margin-top: 8px; }
 
     /* Footer */
     .footer {
       text-align: center;
       padding: 24px;
-      font-size: 0.8rem;
-      color: var(--light-gray);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
     }
+    .footer a { color: var(--blue); text-decoration: none; }
   </style>
 </head>
 <body>
 
+  <!-- FITFO-first header -->
   <div class="header">
-    <h1 class="header__title">Pine Point Tree Service</h1>
-    <p class="header__sub">Website Review — FITFO Systems</p>
+    <div class="header__inner">
+      <div class="header__brand">
+        <span class="header__fitfo">FITFO Systems</span>
+        <span class="header__divider"></span>
+        <span class="header__project">Client Review</span>
+      </div>
+      <h1 class="header__title">Pine Point Tree Service</h1>
+      <p class="header__subtitle">Review the site and share your feedback below. This helps us get everything right before launch.</p>
+    </div>
   </div>
 
   <div class="container">
 
-    <!-- Form -->
     <div id="feedbackForm">
 
       <div class="intro">
-        <p>We want to make sure the site represents Pine Point the right way before it goes live. This form covers the key areas — takes about 5 minutes.</p>
-        <p>Answer what you can. Skip what you're not sure about and we'll talk through it.</p>
+        <p>Go through each section — takes about 5 minutes. Fill in what you're confident about, skip what you're not sure about, and we'll talk through the rest.</p>
       </div>
 
       <form onsubmit="submitFeedback(event)">
@@ -253,10 +310,8 @@
         <!-- Overall -->
         <div class="section">
           <h2 class="section__title">Overall Impression</h2>
-
           <label>When you look at the site, what feels like it represents Pine Point well?</label>
           <textarea name="strengths" placeholder="Sections that feel right, messaging that sounds like you, visuals that work..."></textarea>
-
           <label>What feels off, unclear, or missing?</label>
           <textarea name="changes" placeholder="Anything that doesn't match how you'd describe the business, looks wrong, or should be different..."></textarea>
         </div>
@@ -264,53 +319,51 @@
         <!-- Services -->
         <div class="section">
           <h2 class="section__title">Services</h2>
-
           <div class="option-group">
             <label><input type="checkbox" name="services_accurate" value="yes"> All four services are accurate (removal, trimming, stump grinding, lot clearing)</label>
             <label><input type="checkbox" name="custom_carving" value="yes"> Keep custom stump carving as a featured service</label>
           </div>
-
-          <label>Anything to add, remove, or reword? <span class="label-note">(optional)</span></label>
-          <textarea name="services_notes" rows="3" placeholder="Any service we missed, any description that doesn't sound right..."></textarea>
+          <label>Anything to add, remove, or reword? <span class="label-hint">(optional)</span></label>
+          <textarea name="services_notes" rows="2" placeholder="Any service we missed, any description that doesn't sound right..."></textarea>
         </div>
 
         <!-- Photos -->
         <div class="section">
           <h2 class="section__title">Photos &amp; Work Examples</h2>
-
           <div class="option-group">
             <label><input type="radio" name="photos_quality" value="good"> Current photos represent our work well enough for now</label>
             <label><input type="radio" name="photos_quality" value="have_better"> I have better photos to send over</label>
             <label><input type="radio" name="photos_quality" value="need_discuss"> Let's discuss — not sure what works best</label>
           </div>
-
-          <label>Notes <span class="label-note">(optional)</span></label>
-          <textarea name="photos_notes" rows="2" placeholder="Any specific jobs you'd want shown, or photos you know would look better..."></textarea>
+          <label>Upload better photos if you have them <span class="label-hint">(optional)</span></label>
+          <input type="file" id="photo-uploads" accept="image/*" multiple>
+          <p style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 14px;">Up to 10 photos. Before/after pairs are especially helpful — same spot, same angle.</p>
+          <label>Notes <span class="label-hint">(optional)</span></label>
+          <textarea name="photos_notes" rows="2" placeholder="Any specific jobs you'd want shown, or context for the photos (e.g., '3 ash trees near driveway, Spencer MA')..."></textarea>
         </div>
 
         <!-- Estimate Tool -->
         <div class="section">
           <h2 class="section__title">Estimate Tool</h2>
-
+          <p class="section__note">Try the estimate tool on the preview site first — pick a service and go through the questions.</p>
           <div class="option-group">
             <label><input type="checkbox" name="estimate_flow" value="yes"> The question flow makes sense</label>
             <label><input type="checkbox" name="estimate_pricing" value="yes"> Price ranges feel realistic</label>
           </div>
-
-          <label>Any concerns or ideas? <span class="label-note">(optional)</span></label>
+          <label>Any concerns or ideas? <span class="label-hint">(optional)</span></label>
           <textarea name="estimate_notes" rows="2" placeholder="Questions that felt wrong, prices that seemed off, anything confusing..."></textarea>
         </div>
 
         <!-- Reviews -->
         <div class="section">
           <h2 class="section__title">Review Confirmation</h2>
-          <p style="color: var(--gray); font-size: 0.85rem; margin-bottom: 16px;">These reviews will appear on your live site. Check each one to confirm the quote is accurate and you're okay with it being published.</p>
+          <p class="section__note">These reviews will appear on your live site. Check each one to confirm the quote is accurate and you're okay with it being published.</p>
 
           <div class="confirm-item">
             <input type="checkbox" name="review_susan" value="approved">
             <div>
               <div class="confirm-item__text"><strong>Susan B.</strong> (Facebook)</div>
-              <div class="confirm-item__quote">"Pine Point did an excellent job grooming our big oaks and trimming back the brush..."</div>
+              <div class="confirm-item__quote">"Pine Point did an excellent job grooming our big oaks and trimming back the brush. They cleaned up all the branches and swept the driveway."</div>
             </div>
           </div>
 
@@ -318,7 +371,7 @@
             <input type="checkbox" name="review_roger" value="approved">
             <div>
               <div class="confirm-item__text"><strong>Roger R.</strong> (Facebook)</div>
-              <div class="confirm-item__quote">"Had Pine Point Tree Service take down a HUGE maple tree in the yard near a deck, pool, and fence..."</div>
+              <div class="confirm-item__quote">"Had Pine Point Tree Service take down a HUGE maple tree in the yard near a deck, pool, and fence. Awesome job!!! Couldn't be happier!!"</div>
             </div>
           </div>
 
@@ -326,29 +379,29 @@
             <input type="checkbox" name="review_isaac" value="approved">
             <div>
               <div class="confirm-item__text"><strong>Isaac H.</strong> (BBB)</div>
-              <div class="confirm-item__quote">"Did a great job taking down three large trees in my yard. Very careful with my other plants..."</div>
+              <div class="confirm-item__quote">"Did a great job taking down three large trees in my yard. Very careful with my other plants, great job cleaning up, and the pricing was very fair."</div>
             </div>
           </div>
 
-          <label style="margin-top: 16px;">Additional reviews to include? <span class="label-note">(optional)</span></label>
-          <textarea name="additional_reviews" rows="2" placeholder="Paste review text or tell us where to find them"></textarea>
+          <div style="margin-top: 14px;">
+            <label>Additional reviews to include? <span class="label-hint">(optional)</span></label>
+            <textarea name="additional_reviews" rows="2" placeholder="Paste review text or tell us where to find them"></textarea>
+          </div>
         </div>
 
-        <!-- Contact / Business Details -->
+        <!-- Contact / Business -->
         <div class="section">
           <h2 class="section__title">Contact &amp; Business Details</h2>
-
           <div class="row">
             <div>
-              <label>Phone <span class="label-note">(confirm or update)</span></label>
+              <label>Phone <span class="label-hint">(confirm or update)</span></label>
               <input type="tel" name="phone" value="(774) 262-2145">
             </div>
             <div>
-              <label>Add Jason's number? <span class="label-note">(optional)</span></label>
+              <label>Add Jason's number? <span class="label-hint">(optional)</span></label>
               <input type="tel" name="jason_phone" placeholder="Leave blank if no">
             </div>
           </div>
-
           <div class="row">
             <div>
               <label>Years in business</label>
@@ -364,8 +417,7 @@
               </select>
             </div>
           </div>
-
-          <label>Service area — any towns to add or remove? <span class="label-note">(optional)</span></label>
+          <label>Service area — any towns to add or remove? <span class="label-hint">(optional)</span></label>
           <textarea name="service_area" rows="2" placeholder="Currently: Leicester, Spencer, Paxton, Auburn, Charlton, Oxford, Worcester, Rutland, Holden, Sterling"></textarea>
         </div>
 
@@ -373,11 +425,11 @@
         <div class="section">
           <h2 class="section__title">Anything Else</h2>
           <label>Other feedback, ideas, or requests</label>
-          <textarea name="additional" rows="4" placeholder="Anything we haven't covered..."></textarea>
+          <textarea name="additional" rows="3" placeholder="Anything we haven't covered..."></textarea>
         </div>
 
-        <div class="submit-section">
-          <button type="submit" class="btn-submit">Send Feedback</button>
+        <div class="submit-area">
+          <button type="submit" class="btn-submit">Submit Feedback</button>
         </div>
 
       </form>
@@ -385,17 +437,19 @@
 
     <!-- Confirmation -->
     <div class="confirmation" id="confirmation">
-      <div class="confirmation__icon">&#10003;</div>
+      <div class="confirmation__check">&#10003;</div>
       <h2>Thanks — we've got it.</h2>
-      <p>We'll review your feedback and follow up shortly. If it's easier, we can also go over everything in person or on a call.</p>
+      <p>We'll review your feedback and follow up shortly. If it's easier, we can go over everything on a call or in person too.</p>
+      <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 16px;">Your responses are saved and tied to the project — nothing gets lost.</p>
     </div>
 
   </div>
 
-  <div class="footer">FITFO Systems &middot; fitfosystems.com</div>
+  <div class="footer">
+    <a href="https://fitfosystems.com">FITFO Systems</a> &middot; fitfosystems.com
+  </div>
 
   <script>
-  // ← Replace this URL after deploying the Google Apps Script
   const APPS_SCRIPT_URL = 'https://script.google.com/a/macros/fitfosystems.com/s/AKfycbxGFoSRt2MTPo-E-7nlQlVPvnzKUM0qlMVtRHLqaktoB_WyRaaeXXXVcB9FsLFT3AZg/exec';
 
   function submitFeedback(e) {
@@ -406,7 +460,6 @@
     btn.textContent = 'Sending...';
     btn.disabled = true;
 
-    // Collect all form data
     const data = {
       strengths: form.strengths?.value || '',
       changes: form.changes?.value || '',
@@ -430,8 +483,10 @@
       additional: form.additional?.value || ''
     };
 
-    // POST to Google Apps Script
-    if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== 'PASTE_YOUR_APPS_SCRIPT_URL_HERE') {
+    // Note: photo uploads handled separately in production
+    // For now, photos_quality + photos_notes capture the intent
+
+    if (APPS_SCRIPT_URL && !APPS_SCRIPT_URL.includes('PASTE_YOUR')) {
       fetch(APPS_SCRIPT_URL, {
         method: 'POST',
         mode: 'no-cors',
@@ -440,11 +495,9 @@
       }).then(() => {
         showConfirmation();
       }).catch(() => {
-        // Even on error, show confirmation (no-cors doesn't return readable response)
         showConfirmation();
       });
     } else {
-      // Fallback if URL not set — still show confirmation
       console.log('Form data (backend not configured):', data);
       showConfirmation();
     }
