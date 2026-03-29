@@ -172,8 +172,9 @@ h3 { font-size: var(--font-size-xl); }
 }
 
 .nav__logo img {
-  height: 50px;
-  width: auto;
+  height: 56px;
+  width: 56px;
+  object-fit: contain;
 }
 
 .nav__links {
@@ -436,7 +437,7 @@ h3 { font-size: var(--font-size-xl); }
 .ba-slider {
   position: relative;
   width: 100%;
-  aspect-ratio: 4/3;
+  aspect-ratio: 3/4;
   overflow: hidden;
   border-radius: var(--card-radius);
   cursor: col-resize;
@@ -449,7 +450,7 @@ h3 { font-size: var(--font-size-xl); }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 40%; /* Bias slightly above center to show ground + context */
+  object-position: center center;
 }
 
 .ba-slider__after {
