@@ -87,7 +87,7 @@ function initSlider(slider) {
   if (!afterImg || !divider || !handle) return;
 
   let isDragging = false;
-  let currentPercent = 50;
+  let currentPercent = 5; // Start showing almost all "before" — user slides right to reveal "after"
 
   function setPosition(percent) {
     percent = Math.max(2, Math.min(98, percent));
@@ -165,6 +165,9 @@ function initSlider(slider) {
     slider.appendChild(arrowLeft);
     slider.appendChild(arrowRight);
   }
+
+  // Set initial position — start with "before" fully visible
+  setPosition(5);
 }
 
 /* --- Timeline Arrow Navigation --- */

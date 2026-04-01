@@ -382,7 +382,7 @@ h3 { font-size: var(--font-size-xl); }
 /* --- Services Grid --- */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 2px;
 }
 
@@ -793,21 +793,66 @@ h3 { font-size: var(--font-size-xl); }
 }
 
 /* --- Emergency Banner --- */
+/* --- Gallery Grid --- */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.gallery-grid__item {
+  border-radius: var(--card-radius);
+  overflow: hidden;
+  aspect-ratio: 3/4;
+}
+
+.gallery-grid__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 60%;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.gallery-grid__item:hover img {
+  transform: scale(1.03);
+}
+
+/* --- Emergency Banner --- */
 .emergency-banner {
   background: var(--color-rust);
-  padding: 24px 0;
+  padding: 32px 0;
   text-align: center;
 }
 
 .emergency-banner__text {
   color: var(--color-white);
   font-size: var(--font-size-xl);
-  font-weight: 700;
+  font-weight: 800;
+  margin-bottom: 6px;
 }
 
-.emergency-banner__text a {
-  text-decoration: underline;
-  text-underline-offset: 3px;
+.emergency-banner__sub {
+  color: rgba(255,255,255,0.85);
+  font-size: var(--font-size-base);
+  margin-bottom: 16px;
+}
+
+.emergency-banner__cta {
+  display: inline-block;
+  padding: 12px 32px;
+  background: var(--color-white);
+  color: var(--color-rust);
+  font-weight: 700;
+  font-size: var(--font-size-lg);
+  border-radius: var(--card-radius);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.emergency-banner__cta:hover {
+  opacity: 0.9;
 }
 
 /* --- Footer --- */
@@ -1197,8 +1242,20 @@ h3 { font-size: var(--font-size-xl); }
 /* --- Self-Hosted Video --- */
 .site-video {
   width: 100%;
+  max-height: 600px;
   border-radius: var(--card-radius);
   display: block;
+  object-fit: contain;
+  background: var(--color-charcoal);
+}
+
+/* Ensure poster image shows on mobile even when video hasn't loaded */
+.video-wrapper {
+  position: relative;
+  background: var(--color-charcoal);
+  border-radius: var(--card-radius);
+  overflow: hidden;
+  min-height: 200px;
 }
 
 .video-caption__heading {
@@ -1277,6 +1334,7 @@ body.emergency-active .hero {
   .footer__contact-info { grid-template-columns: 1fr; gap: 24px; }
   .ba-slider-container { grid-template-columns: 1fr; }
   .video-section-layout { grid-template-columns: 1fr; gap: 24px; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 768px) {

@@ -41,17 +41,9 @@
           Tree Trimming &amp; Pruning
           <span class="estimate-option__desc">Cut back branches, shape, or thin canopy</span>
         </button>
-        <button class="estimate-option" data-value="stump" onclick="selectService('stump')">
-          Stump Grinding
-          <span class="estimate-option__desc">Grind down existing stumps</span>
-        </button>
         <button class="estimate-option" data-value="lot_clearing" onclick="selectService('lot_clearing')">
           Lot Clearing
           <span class="estimate-option__desc">Clear trees and brush from a property</span>
-        </button>
-        <button class="estimate-option" data-value="custom_carving" onclick="selectService('custom_carving')">
-          Custom Stump Carving
-          <span class="estimate-option__desc">Fairy houses, carvings, garden features</span>
         </button>
       </div>
     </div>
@@ -219,76 +211,6 @@
     </div>
 
     <!-- ==========================================
-         STUMP GRINDING PATH
-         ========================================== -->
-    <div class="estimate-step" data-step="stump-1">
-      <div class="estimate-step__number">Stump Grinding</div>
-      <h2 class="estimate-step__question">How many stumps?</h2>
-      <div class="estimate-options">
-        <button class="estimate-option" data-key="stumpCount" data-value="1" onclick="answer(this)">1 stump</button>
-        <button class="estimate-option" data-key="stumpCount" data-value="2-3" onclick="answer(this)">2–3 stumps</button>
-        <button class="estimate-option" data-key="stumpCount" data-value="4-6" onclick="answer(this)">4–6 stumps</button>
-        <button class="estimate-option" data-key="stumpCount" data-value="7+" onclick="answer(this)">7 or more</button>
-      </div>
-      <button class="estimate-back" onclick="goBack()">&larr; Back</button>
-    </div>
-
-    <div class="estimate-step" data-step="stump-2">
-      <div class="estimate-step__number">Stump Grinding</div>
-      <h2 class="estimate-step__question">How big are the stumps?</h2>
-      <p class="estimate-step__hint">Measure across the widest point if you can.</p>
-      <div class="estimate-options">
-        <button class="estimate-option" data-key="stumpSize" data-value="small" onclick="answer(this)">
-          Small <span class="estimate-option__desc">Under 12 inches across</span>
-        </button>
-        <button class="estimate-option" data-key="stumpSize" data-value="medium" onclick="answer(this)">
-          Medium <span class="estimate-option__desc">12–24 inches across</span>
-        </button>
-        <button class="estimate-option" data-key="stumpSize" data-value="large" onclick="answer(this)">
-          Large <span class="estimate-option__desc">24–36 inches across</span>
-        </button>
-        <button class="estimate-option" data-key="stumpSize" data-value="xlarge" onclick="answer(this)">
-          Very Large <span class="estimate-option__desc">36+ inches across</span>
-        </button>
-      </div>
-      <button class="estimate-back" onclick="goBack()">&larr; Back</button>
-    </div>
-
-    <div class="estimate-step" data-step="stump-3">
-      <div class="estimate-step__number">Stump Grinding</div>
-      <h2 class="estimate-step__question">Can equipment get to the stumps?</h2>
-      <div class="estimate-options">
-        <button class="estimate-option" data-key="access" data-value="easy" onclick="answer(this)">
-          Yes — easy access
-        </button>
-        <button class="estimate-option" data-key="access" data-value="limited" onclick="answer(this)">
-          Tight but possible
-        </button>
-        <button class="estimate-option" data-key="access" data-value="none" onclick="answer(this)">
-          No — difficult location
-        </button>
-      </div>
-      <button class="estimate-back" onclick="goBack()">&larr; Back</button>
-    </div>
-
-    <div class="estimate-step" data-step="stump-4">
-      <div class="estimate-step__number">Stump Grinding</div>
-      <h2 class="estimate-step__question">Planning to replant or landscape the area?</h2>
-      <div class="estimate-options">
-        <button class="estimate-option" data-key="replant" data-value="yes" onclick="answer(this, true)">
-          Yes — need roots cleared and area prepped
-        </button>
-        <button class="estimate-option" data-key="replant" data-value="no" onclick="answer(this, true)">
-          No — just grind it down
-        </button>
-        <button class="estimate-option" data-key="replant" data-value="not_sure" onclick="answer(this, true)">
-          Not sure yet
-        </button>
-      </div>
-      <button class="estimate-back" onclick="goBack()">&larr; Back</button>
-    </div>
-
-    <!-- ==========================================
          LOT CLEARING PATH
          ========================================== -->
     <div class="estimate-step" data-step="lot_clearing-1">
@@ -360,60 +282,6 @@
         </button>
       </div>
       <button class="estimate-back" onclick="goBack()">&larr; Back</button>
-    </div>
-
-    <!-- ==========================================
-         CUSTOM CARVING (no estimate — request form)
-         ========================================== -->
-    <div class="estimate-step" data-step="carving">
-      <div class="estimate-step__number">Custom Carving Request</div>
-      <h2 class="estimate-step__question">Tell us about your project.</h2>
-      <p style="color: var(--color-light-gray); margin-bottom: 24px;">Custom carvings can't be estimated online — every stump and idea is different. Fill out the details below and we'll follow up.</p>
-      <form class="lead-form" id="carvingForm" onsubmit="submitCarving(event)">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="carving-name">Name *</label>
-            <input type="text" id="carving-name" placeholder="Your name" required>
-          </div>
-          <div class="form-group">
-            <label for="carving-phone">Phone *</label>
-            <input type="tel" id="carving-phone" placeholder="(774) 555-0000" required>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="carving-email">Email</label>
-            <input type="email" id="carving-email" placeholder="you@email.com">
-          </div>
-          <div class="form-group">
-            <label for="carving-location">Town</label>
-            <input type="text" id="carving-location" placeholder="Leicester, Spencer, etc.">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="carving-description">What do you have in mind? *</label>
-          <textarea id="carving-description" rows="4" placeholder="Describe the stump, your idea — fairy house, animal carving, garden feature, etc." required style="padding: 14px 16px; background: var(--color-charcoal); border: 2px solid var(--color-dark-gray); border-radius: 4px; color: var(--color-white); font-family: var(--font-family); font-size: 1rem; resize: vertical; width: 100%;"></textarea>
-        </div>
-        <div class="form-group">
-          <label>Photos — show us the stump, the area, or inspiration</label>
-          <input type="file" id="carving-photos" accept="image/*" multiple style="padding: 12px; background: var(--color-charcoal); border: 2px solid var(--color-dark-gray); border-radius: 4px; color: var(--color-light-gray); font-family: var(--font-family); width: 100%;">
-          <span style="font-size: 0.8rem; color: var(--color-medium-gray); margin-top: 4px; display: block;">Up to 6 photos. JPG, PNG, or HEIC.</span>
-        </div>
-        <div class="form-submit" style="margin-top: 16px;">
-          <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">Send My Request</button>
-        </div>
-      </form>
-      <div id="carvingConfirmation" style="display: none; text-align: center; padding: 32px; background: rgba(45,90,39,0.2); border: 2px solid var(--color-green); border-radius: 4px; margin-top: 16px;">
-        <p style="color: var(--color-green); font-weight: 700; font-size: 1.25rem; margin-bottom: 8px;">Request sent!</p>
-        <p style="color: var(--color-light-gray);">We'll review your project and follow up within 1–2 business days.</p>
-      </div>
-      <div style="text-align: center; margin-top: 24px;">
-        <span style="color: var(--color-medium-gray); font-size: 0.875rem;">or call us directly</span>
-      </div>
-      <div class="estimate-result__ctas" style="margin-top: 12px;">
-        <a href="tel:+17742622145" class="btn btn-outline btn-lg" style="width: 100%; justify-content: center;">Call (774) 262-2145</a>
-      </div>
-      <button class="estimate-back" onclick="goToStep('service')">&larr; Back to services</button>
     </div>
 
     <!-- ==========================================

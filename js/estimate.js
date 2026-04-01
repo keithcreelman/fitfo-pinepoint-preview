@@ -17,9 +17,7 @@ const state = {
 const serviceFlows = {
   removal:      ['removal-1', 'removal-2', 'removal-3', 'removal-4', 'removal-5'],
   trimming:     ['trimming-1', 'trimming-2', 'trimming-3', 'trimming-4'],
-  stump:        ['stump-1', 'stump-2', 'stump-3', 'stump-4'],
-  lot_clearing: ['lot_clearing-1', 'lot_clearing-2', 'lot_clearing-3', 'lot_clearing-4'],
-  custom_carving: ['carving']  // no estimate — goes to request form
+  lot_clearing: ['lot_clearing-1', 'lot_clearing-2', 'lot_clearing-3', 'lot_clearing-4']
 };
 
 // --- Pricing Model ---
@@ -267,11 +265,13 @@ function calculateEstimate() {
     }
   }
 
-  return {
-    low: Math.round(total * 0.80),
-    typical: Math.round(total),
-    high: Math.round(total * 1.25)
-  };
+  // Apply $500 minimum floor across all services
+  const MIN_ESTIMATE = 500;
+  const low = Math.max(MIN_ESTIMATE, Math.round(total * 0.80));
+  const typical = Math.max(MIN_ESTIMATE, Math.round(total));
+  const high = Math.max(MIN_ESTIMATE, Math.round(total * 1.25));
+
+  return { low, typical, high };
 }
 
 function formatPrice(amount) {
