@@ -1359,10 +1359,10 @@ body.emergency-active .hero {
   .service-card { padding: 24px 20px; }
   .service-card__text { font-size: var(--font-size-sm); }
 
-  /* --- About: TEXT FIRST on mobile (critical UX fix) --- */
-  .about__image { order: 1; }  /* push image BELOW text on mobile */
-  .about__content { order: 0; } /* text comes first */
-  .about__image img { height: 260px; object-position: center 20%; } /* Show boom arm + truck in shorter mobile frame */
+  /* --- About: IMAGE FIRST on mobile — work section is right below so lead with the visual --- */
+  .about__image { order: -1; }
+  .about__content { order: 0; }
+  .about__image img { height: 280px; object-position: center 30%; }
   .about__points { gap: 8px; }
   .about__point { padding: 12px 0; }
 
@@ -1383,7 +1383,7 @@ body.emergency-active .hero {
     gap: 20px;
     margin-top: 16px;
   }
-  .ba-slider { aspect-ratio: 3/2; }
+  .ba-slider { aspect-ratio: 3/4; }
   .timeline-item { flex: 0 0 220px; }
   .timeline-item img { height: 170px; }
 

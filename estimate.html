@@ -121,22 +121,7 @@
       <button class="estimate-back" onclick="goBack()">&larr; Back</button>
     </div>
 
-    <div class="estimate-step" data-step="removal-5">
-      <div class="estimate-step__number">Tree Removal</div>
-      <h2 class="estimate-step__question">Do you also need the stumps removed?</h2>
-      <div class="estimate-options">
-        <button class="estimate-option" data-key="stumpRemoval" data-value="yes" onclick="answer(this, true)">
-          Yes — grind the stumps too
-        </button>
-        <button class="estimate-option" data-key="stumpRemoval" data-value="no" onclick="answer(this, true)">
-          No — just the trees
-        </button>
-        <button class="estimate-option" data-key="stumpRemoval" data-value="not_sure" onclick="answer(this, true)">
-          Not sure yet
-        </button>
-      </div>
-      <button class="estimate-back" onclick="goBack()">&larr; Back</button>
-    </div>
+    <!-- Stump question removed — need Jason's input on how he handles stump requests -->
 
     <!-- ==========================================
          TRIMMING / PRUNING PATH
@@ -285,7 +270,51 @@
     </div>
 
     <!-- ==========================================
-         RESULT (all service paths end here)
+         CONTACT INFO (captures lead before showing price)
+         ========================================== -->
+    <div class="estimate-step" data-step="contact">
+      <div class="estimate-step__number">One Last Step</div>
+      <h2 class="estimate-step__question">Where should we send your estimate?</h2>
+      <p style="color: var(--color-light-gray); margin-bottom: 24px;">We'll follow up to discuss your job and schedule a free on-site visit.</p>
+
+      <form class="lead-form" id="contactForm" onsubmit="submitContact(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="contact-name">Name *</label>
+            <input type="text" id="contact-name" placeholder="Your name" required>
+          </div>
+          <div class="form-group">
+            <label for="contact-phone">Phone *</label>
+            <input type="tel" id="contact-phone" placeholder="(774) 555-0000" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="contact-email">Email</label>
+            <input type="email" id="contact-email" placeholder="you@email.com">
+          </div>
+          <div class="form-group">
+            <label for="contact-town">Town</label>
+            <input type="text" id="contact-town" placeholder="Leicester, Spencer, etc.">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="contact-notes">Anything else we should know?</label>
+          <textarea id="contact-notes" rows="2" placeholder="Optional — describe anything specific about the job" style="padding: 14px 16px; background: var(--color-charcoal); border: 2px solid var(--color-dark-gray); border-radius: 4px; color: var(--color-white); font-family: var(--font-family); font-size: 1rem; resize: vertical; width: 100%;"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Photos (optional) — helps us understand the job before we follow up</label>
+          <input type="file" id="contact-photos" accept="image/*" multiple style="padding: 12px; background: var(--color-charcoal); border: 2px solid var(--color-dark-gray); border-radius: 4px; color: var(--color-light-gray); font-family: var(--font-family); width: 100%;">
+        </div>
+        <div class="form-submit">
+          <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">See My Estimate</button>
+        </div>
+      </form>
+      <button class="estimate-back" onclick="goBack()">&larr; Back</button>
+    </div>
+
+    <!-- ==========================================
+         RESULT (shown after contact info submitted)
          ========================================== -->
     <div class="estimate-step" data-step="result">
       <div class="estimate-result">

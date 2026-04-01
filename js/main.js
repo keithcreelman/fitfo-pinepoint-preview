@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initBACarousel();
   initTimelineArrows();
   initVideo();
+  initLightbox();
 });
 
 /* --- Smart Video: autoplay on desktop, lazy on mobile --- */
@@ -251,4 +252,27 @@ function initBACarousel() {
     // Desktop: show all, no carousel behavior needed
     sliders.forEach(s => s.classList.add('ba-active'));
   }
+}
+
+/* --- Gallery Lightbox --- */
+function initLightbox() {
+  // Create lightbox overlay
+  const overlay = document.createElement('div');
+  overlay.id = 'lightbox';
+  overlay.style.cssText = 'display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:10000;cursor:pointer;justify-content:center;align-items:center;padding:24px;';
+  overlay.innerHTML = '<img style="max-width:100%;max-height:100%;object-fit:contain;border-radius:4px;" id="lightboxImg"><button style="position:absolute;top:16px;right:20px;background:none;border:none;color:#fff;font-size:2rem;cursor:pointer;line-height:1;">&times;</button>';
+  document.body.appendChild(overlay);
+
+  overlay.addEventListener('click', function() {
+    overlay.style.display = 'none';
+  });
+
+  // Attach click handlers to gallery images
+  document.addEventListener('click', function(e) {
+    var img = e.target.closest('.gallery-grid__item img');
+    if (img) {
+      document.getElementById('lightboxImg').src = img.src;
+      overlay.style.display = 'flex';
+    }
+  });
 }

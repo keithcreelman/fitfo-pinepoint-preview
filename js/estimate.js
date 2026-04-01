@@ -15,7 +15,7 @@ const state = {
 // --- Service Flow Definitions ---
 // Each service defines its ordered steps. The last step triggers estimate calculation.
 const serviceFlows = {
-  removal:      ['removal-1', 'removal-2', 'removal-3', 'removal-4', 'removal-5'],
+  removal:      ['removal-1', 'removal-2', 'removal-3', 'removal-4'],
   trimming:     ['trimming-1', 'trimming-2', 'trimming-3', 'trimming-4'],
   lot_clearing: ['lot_clearing-1', 'lot_clearing-2', 'lot_clearing-3', 'lot_clearing-4']
 };
@@ -35,12 +35,7 @@ const pricing = {
     pruneType: { overhang: 1.15, shaping: 1.0, deadwood: 1.1, clearance: 1.25 },
     volume: { '1': 1.0, '2-3': 1.8, '4-6': 3.0, '7+': 4.5 }
   },
-  stump: {
-    base: { small: 80, medium: 110, large: 140, xlarge: 180 },
-    access: { easy: 1.0, limited: 1.2, none: 1.4 },
-    replant: { yes: 1.2, no: 1.0, not_sure: 1.0 },
-    volume: { '1': 1.0, '2-3': 1.8, '4-6': 3.0, '7+': 4.5 }
-  },
+  // stump standalone removed — stump addon pricing is in removal.stumpAddon
   lot_clearing: {
     base: { small: 1500, medium: 3500, large: 6000, xlarge: 10000 },
     access: { easy: 1.0, limited: 1.2, none: 1.5 },
@@ -64,12 +59,6 @@ const labels = {
     treeHeight: { small: 'small', medium: 'medium', large: 'large', xlarge: 'very large' },
     access: { easy: 'easy access', limited: 'limited access', none: 'difficult access' }
   },
-  stump: {
-    stumpCount: { '1': '1 stump', '2-3': '2-3 stumps', '4-6': '4-6 stumps', '7+': '7+ stumps' },
-    stumpSize: { small: 'small', medium: 'medium', large: 'large', xlarge: 'very large' },
-    access: { easy: 'easy access', limited: 'limited access', none: 'difficult access' },
-    replant: { yes: 'prep for replanting', no: 'grind only', not_sure: '' }
-  },
   lot_clearing: {
     lotSize: { small: 'small area', medium: 'medium lot', large: 'large lot', xlarge: '1+ acres' },
     lotDensity: { brush: 'brush/small trees', mixed: 'mixed', heavy: 'dense woods' },
@@ -81,7 +70,6 @@ const labels = {
 const serviceNames = {
   removal: 'Tree Removal',
   trimming: 'Trimming & Pruning',
-  stump: 'Stump Grinding',
   lot_clearing: 'Lot Clearing'
 };
 
@@ -125,10 +113,9 @@ function answer(btn, isLast) {
   const currentIndex = flow.indexOf(state.currentStep);
 
   if (isLast || currentIndex === flow.length - 1) {
-    // Last question — calculate and show result
+    // Last question — go to contact form (price shown after submit)
     setTimeout(() => {
-      showResult();
-      goToStep('result');
+      goToStep('contact');
     }, 200);
   } else {
     setTimeout(() => {
@@ -246,15 +233,6 @@ function calculateEstimate() {
       break;
     }
 
-    case 'stump': {
-      const base = p.base[a.stumpSize] || p.base.medium;
-      const accessMult = p.access[a.access] || 1.0;
-      const replantMult = p.replant[a.replant] || 1.0;
-      const volumeMult = p.volume[a.stumpCount] || 1.0;
-      total = base * accessMult * replantMult * volumeMult;
-      break;
-    }
-
     case 'lot_clearing': {
       const base = p.base[a.lotSize] || p.base.medium;
       const accessMult = p.access[a.access] || 1.0;
@@ -265,11 +243,20 @@ function calculateEstimate() {
     }
   }
 
-  // Apply $500 minimum floor across all services
+  // Apply $500 minimum floor — ensure differentiation between tiers
   const MIN_ESTIMATE = 500;
-  const low = Math.max(MIN_ESTIMATE, Math.round(total * 0.80));
-  const typical = Math.max(MIN_ESTIMATE, Math.round(total));
-  const high = Math.max(MIN_ESTIMATE, Math.round(total * 1.25));
+  let low = Math.round(total * 0.80);
+  let typical = Math.round(total);
+  let high = Math.round(total * 1.25);
+
+  // If the calculated total falls below minimum, set floor with spread
+  if (typical < MIN_ESTIMATE) {
+    low = MIN_ESTIMATE;
+    typical = Math.round(MIN_ESTIMATE * 1.15);  // $575
+    high = Math.round(MIN_ESTIMATE * 1.35);     // $675
+  } else if (low < MIN_ESTIMATE) {
+    low = MIN_ESTIMATE;
+  }
 
   return { low, typical, high };
 }
@@ -305,6 +292,14 @@ function openScheduleModal() {
 function closeScheduleModal() {
   document.getElementById('scheduleModal').style.display = 'none';
   document.body.style.overflow = '';
+}
+
+function submitContact(e) {
+  e.preventDefault();
+  // Calculate estimate and show result
+  showResult();
+  goToStep('result');
+  // In production: POST contact info + estimate data to Google Apps Script
 }
 
 function submitSchedule(e) {
