@@ -213,9 +213,13 @@
         <div class="video-section-layout">
           <div class="video-wrapper">
             <video autoplay muted loop playsinline class="site-video" id="heroVideo" poster="images/transformation1d.jpg" preload="metadata">
-              <source src="images/largebirch.mp4" type="video/mp4">
-              Your browser does not support video playback.
+              <source src="images/largebirch-web.mp4" type="video/mp4">
             </video>
+            <div class="video-play-hint" id="videoPlayHint" style="display:none; position:absolute; inset:0; background:rgba(0,0,0,0.3); display:flex; align-items:center; justify-content:center; cursor:pointer; border-radius:var(--card-radius);">
+              <div style="width:60px; height:60px; background:rgba(255,255,255,0.9); border-radius:50%; display:flex; align-items:center; justify-content:center;">
+                <div style="width:0; height:0; border-left:20px solid #1C1C1C; border-top:12px solid transparent; border-bottom:12px solid transparent; margin-left:4px;"></div>
+              </div>
+            </div>
           </div>
           <div class="video-caption">
             <p class="video-caption__heading">Trust the process.</p>

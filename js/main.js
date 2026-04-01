@@ -16,25 +16,47 @@ document.addEventListener('DOMContentLoaded', () => {
 /* --- Smart Video: autoplay on desktop, lazy on mobile --- */
 function initVideo() {
   const video = document.getElementById('heroVideo');
+  const playHint = document.getElementById('videoPlayHint');
   if (!video) return;
+
+  // Try to autoplay — if it fails, show tap-to-play button
+  function tryPlay() {
+    var playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise.then(function() {
+        // Autoplay worked — hide play button
+        if (playHint) playHint.style.display = 'none';
+      }).catch(function() {
+        // Autoplay blocked — show play button
+        if (playHint) {
+          playHint.style.display = 'flex';
+          playHint.addEventListener('click', function() {
+            video.muted = true;
+            video.play();
+            playHint.style.display = 'none';
+          });
+        }
+      });
+    }
+  }
 
   const isMobile = window.innerWidth <= 768;
 
   if (isMobile) {
-    video.preload = 'none';
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+    // On mobile, wait until video is visible to attempt play
+    video.preload = 'metadata';
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
         if (entry.isIntersecting) {
-          video.play().catch(() => {});
-        } else {
-          video.pause();
+          tryPlay();
+          observer.disconnect();
         }
       });
     }, { threshold: 0.3 });
     observer.observe(video);
   } else {
     video.preload = 'auto';
-    video.play().catch(() => {});
+    tryPlay();
   }
 }
 
